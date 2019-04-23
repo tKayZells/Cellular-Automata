@@ -1,10 +1,12 @@
-const path = require('path');
-const html = require('html-webpack-plugin');
-const clean = require('clean-webpack-plugin');
+const path = require('path')
+const html = require('html-webpack-plugin')
+const clean = require('clean-webpack-plugin')
 
 module.exports = {
-    entry: './src/index.js',
-    output: {
+    mode    : "development",
+    entry   : './src/index.js',
+    devtool : "cheap-eval-source-map",
+    output  : {
         filename: 'app.js',
         path: path.resolve(__dirname, 'dist')
     },
@@ -17,7 +19,7 @@ module.exports = {
     devServer : {
         contentBase : path.resolve(__dirname, 'dist')
     },
-    module : {
+    module  : {
         rules : [
             {
                 test: /\.css$/,

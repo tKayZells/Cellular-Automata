@@ -1,5 +1,4 @@
 import p5 from "p5"
-import Cell from "../models/cell";
 
 const sketch = ( p5 ) => {
 

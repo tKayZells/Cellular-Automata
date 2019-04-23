@@ -1,4 +1,4 @@
 import p5 from "p5"
-import sketch from "./sketches/empty"
+import ca from "./sketches/cellularautomata"
 
-new p5(sketch, "app")
+new p5(ca, "app")
