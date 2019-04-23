@@ -21,55 +21,45 @@ export default class Grid {
             }         
         }
         
+        for (let i = 0; i < this.cols; i++) {
+            for (let j = 0; j < this.rows; j++) {
+                this.grid[i][j].neighbors = this._Neightbours(i, j)
+            }         
+        }
     }
-    
+
     ComputeNext() {
         
         this.grid.forEach( (rows) => rows.forEach( 
-            ( val ) => {
-                
-                let count = this._CountLiveNeightbours(val.x, val.y)
-
-                if ( val.state == 1 && (count > 3 || count < 2)) 
-                {
-                    val.nextState = 0 
-                }
-                else if(val.state == 0 && count == 3)
-                {
-                    val.nextState = 1
-                }
-                else
-                {
-                    val.nextState = val.state;
-                }
-            }
+            ( val ) => val.ComputeNewState()
         ))
         
     }
 
-    _CountLiveNeightbours( x, y){
-        let sum = -this.grid[x][y].state
+    DrawGrid( p5instance ){
+        
+        this.grid.forEach( (rows) => rows.forEach( 
+                ( val ) => val.Draw(p5instance) 
+            ) 
+        )
+
+    }
+    
+    _Neightbours( x, y){
+        
+        let neightbours = []
 
         for (let i = -1; i < 2; i++){
             for(let j = -1 ; j < 2; j++)
             {
                 let col = (x + i + this.cols) % this.cols
                 let row = (y + j + this.rows) % this.rows
-                sum += this.grid[ col ][ row ].state
+                neightbours.push( this.grid[col][row] )
             } 
         }
 
-        return sum
+        return neightbours
     }
 
-    DrawGrid( p5instance ){
-        
-        this.grid.forEach( 
-            (rows) => rows.forEach( 
-                ( val ) => val.Draw(p5instance, this.resolution) 
-            ) 
-        )
-
-    }
 
 }
