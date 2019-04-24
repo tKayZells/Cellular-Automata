@@ -2,7 +2,7 @@ import Grid from "../models/grid";
 
 const ca = ( p5 ) => {
 
-    var resolution = 5
+    var resolution = 15
     var cols       = -1
     var rows       = -1
     var grid       = {}
@@ -17,10 +17,9 @@ const ca = ( p5 ) => {
     }
 
     p5.setup = () => {  
-        let canvas = p5.createCanvas(1024, 450)
+        let canvas = p5.createCanvas(460, 460)
         canvas.background(0)
         InitGrid()
-        p5.frameRate(30)
     }
 
     p5.draw = () => {
